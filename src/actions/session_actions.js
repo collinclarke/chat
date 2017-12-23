@@ -16,7 +16,7 @@ export const loginUserWithFacebook = () => dispatch => {
     writeUserData( uid, email);
     dispatch(receiveUser(result.user));
   }
-  firebase.auth().signInWithPopup(provider)
+  return firebase.auth().signInWithPopup(provider)
   .then(result => fbAuth(result));
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { loginUserWithFacebook, logoutUser } from './actions/session_actions';
 
 class FacebookButton extends Component {
@@ -20,8 +21,15 @@ class FacebookButton extends Component {
   }
 
   sessionAction = () => {
-    const { currentUser, login, logout } = this.props;
-    currentUser ? logout() : login();
+    const { currentUser, login, logout, history} = this.props;
+      if (currentUser) {
+        logout();
+        history.push('/');
+      } else {
+        login().then(() => {
+          history.push('/chat');
+        })
+      }
   }
 
 }
@@ -39,4 +47,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FacebookButton);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FacebookButton));

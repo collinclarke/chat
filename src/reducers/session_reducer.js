@@ -6,10 +6,7 @@ const sessionReducer = (state = initialState, action) => {
   switch(action.type){
     case RECEIVE_USER:
       const { email, uid } = action.currentUser
-      const user = {
-        email,
-        uid
-      }
+      const user = { email, uid }
       return Object.assign({}, state, { currentUser: user });
     case LOGOUT_USER:
       return initialState;
