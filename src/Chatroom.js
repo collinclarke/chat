@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { sendMessage } from './actions/message_actions'
-
+import { sendMessage, watchMessages } from './actions/message_actions';
 
 class Chatroom extends Component {
 
@@ -13,11 +12,12 @@ class Chatroom extends Component {
   }
 
   render() {
+    const { messages } = this.props;
     return (
       <div className="">
         <div className="row">
           <div className="col-xs-12 text-center">
-            messages go here
+            { messages }
           </div>
         </div>
         <form className="row" onSubmit={this.submitMessage}>
@@ -48,6 +48,7 @@ class Chatroom extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
+  watchMessages(dispatch);
   return {
     sendMessage: (message) => dispatch(sendMessage(message))
   }
@@ -56,6 +57,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     currentUser: state.session.currentUser,
+    messages: state.messages
   }
 }
 
