@@ -15,15 +15,7 @@ module.exports = function(grunt) {
                     ]
                 }
             }
-        },
-
-        watch: {
-            less: {
-                files: ['less/**'],
-                tasks: ['less']
-            }
         }
-
     });
 
 //  Where we tell Grunt we plan to use this plug-in.

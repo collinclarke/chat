@@ -18,8 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "compile-less": "grunt compile-less",
-    "watch-less": "grunt watch"
+    "compile-less": "grunt compile-less"
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
