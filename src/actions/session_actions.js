@@ -10,14 +10,12 @@ const writeUserData = (userId, email) => {
 }
 
 export const loginUserWithFacebook = () => dispatch => {
-  var provider = new firebase.auth.FacebookAuthProvider();
-
+  const provider = new firebase.auth.FacebookAuthProvider();
   const fbAuth = result => {
     const { uid, email } = result.user;
     writeUserData( uid, email);
     dispatch(receiveUser(result.user));
   }
-
   firebase.auth().signInWithPopup(provider)
   .then(result => fbAuth(result));
 }
