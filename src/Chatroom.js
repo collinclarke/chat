@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendMessage, watchMessages } from './actions/message_actions';
+import Message from './Message';
 
 class Chatroom extends Component {
 
@@ -11,20 +12,27 @@ class Chatroom extends Component {
     }
   }
 
-  render() {
+  messageHelper() {
     const { messages } = this.props;
+    const ids = Object.keys(messages);
+    return ids.map(id => {
+      return <Message text={messages[id]} key={id}/>
+    })
+  }
+
+  render() {
     return (
       <div className="">
         <div className="row">
-          <div className="col-xs-12 text-center">
-            { messages }
+          <div className="col-xs-12">
+            { this.messageHelper() }
           </div>
         </div>
         <form className="row" onSubmit={this.submitMessage}>
           <div className="col-xs-6 col-xs-offset-2">
             <input onChange={this.handleChange} type="text" className="form-control" placeholder="Type here..." />
           </div>
-          <div className="col-xs-1">
+          <div className="col-xs-2 text-right">
             <button className="btn btn-primary">send</button>
           </div>
         </form>

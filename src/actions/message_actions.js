@@ -19,7 +19,9 @@ export const watchMessages = dispatch => {
   const uid = dispatch(getCurrentUser());
   const msgRef = firebase.database().ref('user-chat/' + uid);
   msgRef.on('child_added', snap => {
-    dispatch(receiveMessage(snap.val()));
+    const pathArray = snap.ref_.path.pieces_;
+    const id = pathArray[pathArray.length - 1];
+    dispatch(receiveMessage(snap.val(), id));
   })
 }
 
@@ -28,12 +30,8 @@ export const sendMessage = msgObj => dispatch => {
   saveMessage(uid, message);
 }
 
-const receiveMessage = message => ({
+const receiveMessage = (message, id) => ({
   type: RECEIVE_MESSAGE,
-  message
-})
-
-const receiveMessages = messages => ({
-  type: RECEIVE_MESSAGES,
-  messages
+  message,
+  id
 })
