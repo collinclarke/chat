@@ -24,18 +24,20 @@ class Chatroom extends Component {
     return (
       <div className="">
         <div className="row">
-          <div className="col-xs-12">
+          <div className="col-sm-12 ">
             { this.messageHelper() }
           </div>
         </div>
-        <form className="row" onSubmit={this.submitMessage}>
-          <div className="col-xs-6 col-xs-offset-2">
-            <input onChange={this.handleChange} type="text" className="form-control" placeholder="Type here..." />
-          </div>
-          <div className="col-xs-2 text-right">
-            <button className="btn btn-primary">send</button>
-          </div>
-        </form>
+        <div className="fixed-bottom">
+          <form className="row justify-content-sm-center" onSubmit={this.submitMessage}>
+            <div className="col-sm-6 col-sm-offset-2">
+              <input onChange={this.handleChange} type="text" className="form-control" placeholder="Type here..." />
+            </div>
+            <div className="col-sm-2 text-right">
+              <button className="btn btn-primary">send</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }
