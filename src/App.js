@@ -14,8 +14,8 @@ class App extends Component {
             <h1 className="text-center">Welcome to Chat</h1>
           </div>
         </div>
-        <div className="row">
-          <div className="col-sm-12 text-center">
+        <div className="row fixed-top">
+          <div className="col-sm-12 justify-content-center">
             <FacebookButton />
           </div>
         </div>
