@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { sendMessage, watchMessages } from './actions/message_actions';
 import Message from './Message';
 
+
 class Chatroom extends Component {
 
   constructor() {
@@ -22,19 +23,19 @@ class Chatroom extends Component {
 
   render() {
     return (
-      <div className="">
-        <div className="row">
-          <div className="col-sm-12 ">
+      <div className="d-flex align-items-center justify-content-center" style={{height: '100vh'}}>
+        <div className="row justify-content-center">
+          <div className="col-11 border border-left-0 border-right-0" style={{maxHeight: '80vh', overflowY: 'scroll'}}>
             { this.messageHelper() }
           </div>
         </div>
-        <div className="fixed-bottom">
+        <div className="fixed-bottom m-3">
           <form className="row justify-content-sm-center" onSubmit={this.submitMessage}>
-            <div className="col-sm-6 col-sm-offset-2">
+            <div className="col-9">
               <input onChange={this.handleChange} type="text" className="form-control" placeholder="Type here..." />
             </div>
-            <div className="col-sm-2 text-right">
-              <button className="btn btn-primary">send</button>
+            <div className="col-3 text-right">
+              <button className="btn"><span className="oi oi-share" title="share" aria-hidden="true"></span></button>
             </div>
           </form>
         </div>
