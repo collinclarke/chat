@@ -6,7 +6,9 @@ const initialState = {};
 const messagesReducer = (state = initialState, action) => {
   switch(action.type){
     case RECEIVE_MESSAGE:
-      const newState = Object.assign({}, state, {[action.id]: action.message})
+      const { message, uid } = action;
+      const msgObj = { message, uid }
+      const newState = Object.assign({}, state, {[action.id]: msgObj})
       return newState;
     case LOGOUT_USER:
       return initialState;
