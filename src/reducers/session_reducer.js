@@ -5,8 +5,8 @@ const initialState = { currentUser: null };
 const sessionReducer = (state = initialState, action) => {
   switch(action.type){
     case RECEIVE_USER:
-      const { email, uid } = action.currentUser
-      const user = { email, uid }
+      const { email, uid, displayName, photoURL } = action.currentUser
+      const user = { email, uid, displayName, photoURL }
       return Object.assign({}, state, { currentUser: user });
     case LOGOUT_USER:
       return initialState;
