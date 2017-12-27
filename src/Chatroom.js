@@ -28,7 +28,7 @@ class Chatroom extends Component {
     return (
       <div className="row align-items-center" style={{height: '100vh'}}>
           <div className="h-100 w-100 border border-left-0 border-right-0 p-2" style={{maxHeight: '80vh', overflowY: 'scroll', overflowX: 'hidden'}}>
-            <div className="d-flex flex-column justify-content-end w-100 h-100">
+            <div className="d-flex flex-column flex-nowrap justify-content-end w-100">
               { this.messageHelper() }
             </div>
           </div>
