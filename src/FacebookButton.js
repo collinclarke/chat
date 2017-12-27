@@ -27,7 +27,7 @@ class FacebookButton extends Component {
         history.push('/');
       } else {
         login().then(() => {
-          history.push('/chat');
+          history.push('/profile');
         })
       }
   }
