@@ -12,8 +12,10 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <div className="row fixed-top m-3">
-          <div className="col-4 align-self-start">
-            <FacebookButton />
+          <div className="row">
+            <div className="col-4 align-self-start">
+              <FacebookButton />
+            </div>    
           </div>
         </div>
         <Route exact path='/profile' component={ Profile }/>
