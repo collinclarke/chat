@@ -3,6 +3,11 @@ import * as firebase from 'firebase';
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 
+export const sendMessage = msgObj => dispatch => {
+  const { message, uid} = msgObj;
+  saveMessage(uid, message);
+}
+
 const saveMessage = (uid, message) => {
   const newMsgKey = firebase.database().ref().child('messages').push().key;
   const updates = {};
@@ -21,17 +26,15 @@ export const watchMessages = dispatch => {
   msgRef.on('child_added', snap => {
     const pathArray = snap.ref_.path.pieces_;
     const id = pathArray[pathArray.length - 1];
-    dispatch(receiveMessage(snap.val(), id));
+    dispatch(receiveMessage(snap.val(), id, uid));
   })
 }
 
-export const sendMessage = msgObj => dispatch => {
-  const { message, uid} = msgObj;
-  saveMessage(uid, message);
-}
 
-const receiveMessage = (message, id) => ({
+
+const receiveMessage = (message, id, uid) => ({
   type: RECEIVE_MESSAGE,
   message,
-  id
+  id,
+  uid
 })
