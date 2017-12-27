@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const Auth = (props) => {
   const {loggedIn, component: Component, path} = props;
-  const rendering = loggedIn ? (<Redirect to='/earn' />) : (<Component {...props} />);
+  const rendering = loggedIn ? (<Redirect to='/profile' />) : (<Component {...props} />);
   return (
     <Route path={ path } render={ props => rendering } />
   );
