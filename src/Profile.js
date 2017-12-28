@@ -61,7 +61,7 @@ class Profile extends Component {
     return (
       <div>
         <div className="row justify-content-center">
-          <div className="col-6 text-center">
+          <div className="col-6 text-center mt-5">
             <img src={photoURL}
             className="rounded-circle my-3"
             alt="Profile"/>
