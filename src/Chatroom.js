@@ -34,11 +34,13 @@ class Chatroom extends Component {
           </div>
         <div className="fixed-bottom m-3">
           <form className="row" onSubmit={this.submitMessage}>
-            <div className="col-9">
-              <input onChange={this.handleChange} ref="chatbar" type="text" className="form-control" placeholder="Type here..." />
-            </div>
-            <div className="col-3 text-right">
-              <button className={"btn w-100 " + textColor}><span className="oi oi-share" title="share" aria-hidden="true"></span></button>
+            <div className="col-12">
+              <div className="input-group">
+                <input onChange={this.handleChange} ref="chatbar" type="text" className="form-control" placeholder="Type here..." type="text" aria-label="Type here..." />
+                <span className="input-group-btn">
+                  <button className={"btn w-100 " + textColor}><span className="oi oi-share" title="share" aria-hidden="true"></span></button>
+                </span>
+              </div>
             </div>
           </form>
         </div>
