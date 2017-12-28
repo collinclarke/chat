@@ -1,4 +1,4 @@
-import { RECEIVE_USER, LOGOUT_USER} from '../actions/session_actions';
+import { RECEIVE_USER, LOGOUT_USER, UPDATE_BIO} from '../actions/session_actions';
 
 const initialState = { currentUser: null };
 
@@ -10,6 +10,10 @@ const sessionReducer = (state = initialState, action) => {
       return Object.assign({}, state, { currentUser: user });
     case LOGOUT_USER:
       return initialState;
+    case UPDATE_BIO:
+      let newState = Object.assign({}, state);
+      newState.currentUser.bio = action.bio;
+      return newState;
     default:
       return state;
   }

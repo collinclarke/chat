@@ -2,17 +2,23 @@ import * as firebase from 'firebase';
 
 export const RECEIVE_USER = "RECEIVE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const UPDATE_BIO = "UPDATE_BIO";
 
 const writeUserData = (userId, email, photoURL, displayName) => {
   firebase.database().ref('users/' + userId).set({
     email,
     photoURL,
-    displayName
+    displayName,
+    bio: ""
   });
 }
 
-export const updateProfile = (data, userId) => {
-  firebase.database().ref('users/' + userId).set(data);
+export const saveBio = (bio) => (dispatch, getState) => {
+  const { uid } = getState().session.currentUser;
+  const updates = {};
+  updates['/users/' + uid + '/bio/'] = bio;
+  return firebase.database().ref().update(updates)
+  .then(() => dispatch(updateBio(bio)));
 }
 
 export const loginUserWithFacebook = () => dispatch => {
@@ -39,3 +45,8 @@ export const receiveUser = currentUser => ({
 const logoutCurrentUser = () => ({
   type: LOGOUT_USER
 });
+
+const updateBio = bio => ({
+  type: UPDATE_BIO,
+  bio
+})
