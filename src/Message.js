@@ -15,8 +15,8 @@ class Message extends Component {
     return (
       <div className={"m-0 row " + direction}>
         <div className="col-auto mw-100 px-0">
-          <div ref="message" className={"mx-2 my-1 p-2 d-flex justify-content-center " + bgColor} style={{borderRadius: '1rem', minWidth: '2rem'}}>
-            <div className="text-left text-light m-1"> { this.props.text } </div>
+          <div ref="message" className={"mx-2 my-1 px-2 d-flex justify-content-center " + bgColor} style={{borderRadius: '1rem', minWidth: '2rem'}}>
+            <div style={{wordBreak: 'break-all'}} className="text-left text-light m-1"> { this.props.text } </div>
           </div>
         </div>
       </div>
