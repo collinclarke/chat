@@ -7,11 +7,11 @@ class Nav extends Component {
   render() {
     const {photoURL} = this.props.currentUser;
     return (
-      <nav className="navbar fixed-top pt-0">
+      <nav style={{width: '100vw'}} className="navbar fixed-top pt-0">
         <Link className="navbar-brand" to="/chat" >
-          <img style={{width: "3rem"}} src={logoSmall}/>
+          <img style={{width: "3rem"}} src={logoSmall} alt="Talk logo"/>
         </Link>
-        <Link className="m-0" to="/profile" >
+        <Link to="/profile" >
           <img src={photoURL}
           style={{width: "3rem"}}
           className="rounded-circle my-3"
