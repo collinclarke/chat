@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { saveBio } from './actions/session_actions';
+import FacebookButton from './FacebookButton';
 
 class Profile extends Component {
 
@@ -59,9 +60,9 @@ class Profile extends Component {
     const { photoURL, displayName } = this.props.currentUser;
     const { editing } = this.state;
     return (
-      <div>
+      <div style={{height: '100vh'}} className="d-flex flex-column justify-content-center">
         <div className="row justify-content-center">
-          <div className="col-6 text-center mt-5">
+          <div className="col-6 text-center">
             <img src={photoURL}
             className="rounded-circle my-3"
             alt="Profile"/>
@@ -73,6 +74,11 @@ class Profile extends Component {
           </div>
         </div>
         { editing ? this.updateField() : this.displayBio() }
+        <div className="row justify-content-center">
+          <div className="col-10 text-center mt-6">
+            <FacebookButton />
+          </div>
+        </div>
       </div>
     );
   }
