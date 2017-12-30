@@ -21,7 +21,7 @@
 .sass-cache
 
 #assets
-/assets/small_talk.ai
+/src/assets/small_talk.ai
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
