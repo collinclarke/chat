@@ -26,17 +26,17 @@ class Chatroom extends Component {
   render() {
     const textColor = (this.state.message === "") ? "text-secondary" : "text-primary";
     return (
-      <div className="row" style={{height: '100vh'}}>
-          <div className="mt-6 h-82 w-100 border border-left-0 border-right-0 p-2" style={{ overflowY: 'scroll', overflowX: 'hidden'}}>
-            <div className="d-flex flex-column flex-nowrap justify-content-end w-100">
-              { this.messageHelper() }
-            </div>
+      <div className="row">
+        <div style={{height: '100vh'}} className="position-fixed d-flex flex-column flex-nowrap justify-content-center w-100">
+          <div style={{height: '78vh', overflowY: 'auto'}} className="pr-3 mt-2">
+            { this.messageHelper() }
           </div>
+        </div>
         <div className="fixed-bottom m-3">
           <form className="row" onSubmit={this.submitMessage}>
-            <div className="col-12">
+            <div className="col-12 w-100">
               <div className="input-group">
-                <input onChange={this.handleChange} ref="chatbar" type="text" className="form-control" placeholder="Type here..." type="text" aria-label="Type here..." />
+                <input onChange={this.handleChange} type="text" ref="chatbar" className="form-control" placeholder="Type here..." aria-label="Type here..." />
                 <span className="input-group-btn">
                   <button className={"btn w-100 " + textColor}><span className="oi oi-share" title="share" aria-hidden="true"></span></button>
                 </span>
