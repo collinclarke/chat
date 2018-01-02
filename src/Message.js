@@ -11,14 +11,15 @@ class Message extends Component {
   render() {
     const { bot } = this.props;
 
-    const bgColor = bot ? "bg-secondary" : "bg-primary"
+    const bgColor = bot ? "bg-light" : "bg-primary"
+    const textColor = bot ? "text-dark" : "text-light"
     const direction = bot ? "justify-content-start" : "justify-content-end";
 
     return (
       <div className={"m-0 row " + direction}>
         <div className="col-auto mw-100 px-0">
           <div ref="message" className={"mx-2 my-1 px-2 d-flex justify-content-center " + bgColor} style={{borderRadius: '1rem', minWidth: '2rem'}}>
-            <div ref="container"  className="text-left text-light m-1 mw-100">
+            <div ref="container"  className={"text-left m-1 mw-100 " + textColor} >
               <span ref="text" style={{wordWrap: 'break-word', whiteSpace: 'pre-wrap'}} className="mw-100">
                 { this.props.text }
               </span>

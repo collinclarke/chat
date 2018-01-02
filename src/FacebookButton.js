@@ -10,7 +10,7 @@ class FacebookButton extends Component {
     let msg, btnStyle;
     if (currentUser) {
       msg = "Logout";
-      btnStyle = "btn btn-default"
+      btnStyle = "btn btn-light"
     } else {
       msg = "Continue with Facebook";
       btnStyle = "btn btn-primary";

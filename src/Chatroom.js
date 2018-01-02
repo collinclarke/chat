@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendMessage, watchMessages } from './actions/message_actions';
 import Message from './Message';
+import loadingSVG from './assets/dots.svg';
 
 
 class Chatroom extends Component {
@@ -14,12 +15,16 @@ class Chatroom extends Component {
   }
 
   messageHelper() {
-    const { messages, currentUser } = this.props;
+    const { messages, currentUser, loading } = this.props;
     const ids = Object.keys(messages);
-    return ids.map(id => {
+    const msgs = ids.map(id => {
       const { message, bot } = messages[id];
       return <Message text={message} key={id} bot={bot}/>
     })
+    if (loading) {
+      msgs.push(<Message text={<img style={{width: "60px", height: "18px", objectFit: "cover"}} src={loadingSVG} />} key="typing" bot={true}/>)
+    }
+    return msgs;
   }
 
   render() {
@@ -29,15 +34,16 @@ class Chatroom extends Component {
         <div style={{height: '100vh'}} className="position-fixed d-flex flex-column flex-nowrap justify-content-center w-100">
           <div style={{height: '78vh', overflowY: 'auto'}} className="px-3 pt-2 mt-2 border border-left-0 border-right-0 border-bottom-0">
             { this.messageHelper() }
+
           </div>
         </div>
         <div className="fixed-bottom m-3">
           <form className="row" onSubmit={this.submitMessage}>
             <div className="col-12 w-100">
               <div className="input-group">
-                <input onChange={this.handleChange} type="text" ref="chatbar" className="form-control" placeholder="Type here..." aria-label="Type here..." />
+                <input onChange={this.handleChange} type="text" ref="chatbar" className="form-control border-right-0" placeholder="Type here..." aria-label="Type here..." />
                 <span className="input-group-btn">
-                  <button className={"btn w-100 " + textColor}><span className="oi oi-share" title="share" aria-hidden="true"></span></button>
+                  <button className={"btn btn-light w-100 " + textColor}><span className="oi oi-share" title="share" aria-hidden="true"></span></button>
                 </span>
               </div>
             </div>
@@ -75,7 +81,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     currentUser: state.session.currentUser,
-    messages: state.messages
+    messages: state.messages,
+    loading: state.ui.loading
   }
 }
 

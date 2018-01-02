@@ -4,6 +4,7 @@ const client = new ApiAiClient({accessToken: '86688ab5f02343429127629909460323'}
 
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const GENERATING_RESPONSE = "GENERATING_RESPONSE";
+export const RECEIVE_RESPONSE = "RECEIVE_RESPONSE";
 
 export const sendMessage = msgObj => dispatch => {
   const { uid, message } = msgObj;
@@ -33,7 +34,11 @@ export const watchMessages = dispatch => {
   msgRef.on('child_added', snap => {
     const pathArray = snap.ref_.path.pieces_;
     const id = pathArray[pathArray.length - 1];
-    dispatch(receiveMessage(snap.val(), id, uid));
+    const { bot, message } = snap.val();
+    if (bot) {
+      dispatch(receiveResponse());
+    }
+      dispatch(receiveMessage(snap.val(), id));
   })
 }
 
@@ -44,17 +49,23 @@ export const generateResponse = (uid, message) => dispatch => {
     .then( (response) => {
       const answer = response.result.fulfillment.speech;
       if (answer !== "") {
-        saveMessage(uid, response.result.fulfillment.speech, true)
+        const sv = () => saveMessage(uid, response.result.fulfillment.speech, true);
+        // fake delay
+        setTimeout(sv, 1000)
+      } else {
+        const unknown = () => saveMessage(uid, "I don't know what that means yet, sorry!", true);
+        setTimeout(unknown, 500);
       }
-      console.log(response);
     })
     .catch( (error) => { console.log(error) })
 }
 
-window.generateResponse = generateResponse;
-
 const generatingResponse = () => ({
   type: GENERATING_RESPONSE
+})
+
+const receiveResponse = () => ({
+  type: RECEIVE_RESPONSE,
 })
 
 const receiveMessage = (message, id) => ({
