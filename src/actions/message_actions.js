@@ -1,11 +1,14 @@
 import * as firebase from 'firebase';
+import {ApiAiClient} from "api-ai-javascript";
+const client = new ApiAiClient({accessToken: '86688ab5f02343429127629909460323'})
 
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
-export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
+export const GENERATING_RESPONSE = "GENERATING_RESPONSE";
 
 export const sendMessage = msgObj => dispatch => {
-  const { message, uid} = msgObj;
-  saveMessage(uid, message);
+  const { uid, message } = msgObj;
+  saveMessage(uid, message)
+  dispatch(generateResponse(uid, message));
 }
 
 const saveMessage = (uid, message) => {
@@ -30,7 +33,25 @@ export const watchMessages = dispatch => {
   })
 }
 
+export const generateResponse = (uid, message) => dispatch => {
+  dispatch(generatingResponse());
 
+  client.textRequest(message)
+    .then( (response) => {
+      const answer = response.result.fulfillment.speech;
+      if (answer !== "") {
+        saveMessage(uid, response.result.fulfillment.speech)
+      }
+      console.log(response);
+    })
+    .catch( (error) => { console.log(error) })
+}
+
+window.generateResponse = generateResponse;
+
+const generatingResponse = () => ({
+  type: GENERATING_RESPONSE
+})
 
 const receiveMessage = (message, id, uid) => ({
   type: RECEIVE_MESSAGE,
