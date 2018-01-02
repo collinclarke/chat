@@ -32,12 +32,12 @@ class Profile extends Component {
       <div>
         <div className="row justify-content-center">
           <div className="col-12 text-center">
-            <textarea onChange={this.handleChange} value={this.state.bio} placeholder="Say something about yourself..."></textarea>
+            <textarea rows="5" className="col-10" onChange={this.handleChange} value={this.state.bio} placeholder="Say something about yourself..."></textarea>
           </div>
         </div>
         <div className="row justify-content-center">
           <div className="col-5 text-center">
-            <button type="button" onClick={this.updateBio} className="btn">Update Profile</button>
+            <button type="button" onClick={this.updateBio} className="btn btn-primary">Update Profile</button>
           </div>
         </div>
       </div>
@@ -47,11 +47,17 @@ class Profile extends Component {
   displayBio() {
     const { bio } = this.state;
     return (
-      <div className="row justify-content-center">
-        <div className="col-12 text-center">
-          <p>{bio}</p>
+      <div>
+        <div className="row justify-content-center">
+          <div className="col-6 text-center">
+            <h6>About Me  <span onClick={this.startEditing} className="oi oi-cog text-primary" title="cog" aria-hidden="true"></span> </h6>
+          </div>
         </div>
-        <button type="button" onClick={this.startEditing} className="btn btn-primary">Edit</button>
+        <div className="row justify-content-center">
+          <div className="col-10 col-md-5 text-center">
+            <p>{bio}</p>
+          </div>
+        </div>
       </div>
     )
   }
@@ -69,7 +75,7 @@ class Profile extends Component {
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-6 text-center">
+          <div className="col-6 text-center my-3">
             <h4>{ displayName }</h4>
           </div>
         </div>
