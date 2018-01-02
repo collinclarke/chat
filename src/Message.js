@@ -9,10 +9,10 @@ class Message extends Component {
   }
 
   render() {
-    const { ownMessage } = this.props;
+    const { bot } = this.props;
 
-    const bgColor = ownMessage ? "bg-primary" : "bg-secondary"
-    const direction = ownMessage ? "justify-content-end" : "justify-content-start";
+    const bgColor = bot ? "bg-secondary" : "bg-primary"
+    const direction = bot ? "justify-content-start" : "justify-content-end";
 
     return (
       <div className={"m-0 row " + direction}>

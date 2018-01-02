@@ -17,9 +17,8 @@ class Chatroom extends Component {
     const { messages, currentUser } = this.props;
     const ids = Object.keys(messages);
     return ids.map(id => {
-      const { message, uid } = messages[id];
-      const ownMessage = (currentUser.uid === uid);
-      return <Message text={message} key={id} ownMessage={ownMessage}/>
+      const { message, bot } = messages[id];
+      return <Message text={message} key={id} bot={bot}/>
     })
   }
 

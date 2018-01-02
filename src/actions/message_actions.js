@@ -7,14 +7,18 @@ export const GENERATING_RESPONSE = "GENERATING_RESPONSE";
 
 export const sendMessage = msgObj => dispatch => {
   const { uid, message } = msgObj;
-  saveMessage(uid, message)
+  saveMessage(uid, message, false)
   dispatch(generateResponse(uid, message));
 }
 
-const saveMessage = (uid, message) => {
+const saveMessage = (uid, message, bot) => {
   const newMsgKey = firebase.database().ref().child('messages').push().key;
   const updates = {};
-  updates['/user-chat/' + uid + '/' + newMsgKey] = message;
+  const newMsg = {
+    message,
+    bot
+  };
+  updates['/user-chat/' + uid + '/' + newMsgKey] = newMsg;
   return firebase.database().ref().update(updates);
 }
 
@@ -40,7 +44,7 @@ export const generateResponse = (uid, message) => dispatch => {
     .then( (response) => {
       const answer = response.result.fulfillment.speech;
       if (answer !== "") {
-        saveMessage(uid, response.result.fulfillment.speech)
+        saveMessage(uid, response.result.fulfillment.speech, true)
       }
       console.log(response);
     })
@@ -53,9 +57,8 @@ const generatingResponse = () => ({
   type: GENERATING_RESPONSE
 })
 
-const receiveMessage = (message, id, uid) => ({
+const receiveMessage = (message, id) => ({
   type: RECEIVE_MESSAGE,
   message,
-  id,
-  uid
+  id
 })
