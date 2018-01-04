@@ -29,15 +29,15 @@ class Profile extends Component {
 
   updateField() {
     return (
-      <div>
+      <div className="a-fade">
         <div className="row justify-content-center">
-          <div className="col-12 text-center">
-            <textarea rows="5" className="col-10" onChange={this.handleChange} value={this.state.bio} placeholder="Say something about yourself..."></textarea>
+          <div className="col-12 text-center mb-2">
+            <textarea rows="5" className="col-11 text-center" onChange={this.handleChange} value={this.state.bio} placeholder="Say something about yourself..."></textarea>
           </div>
         </div>
         <div className="row justify-content-center">
           <div className="col-5 text-center">
-            <button type="button" onClick={this.updateBio} className="btn btn-primary">Update Profile</button>
+            <button type="button" onClick={this.updateBio} className="btn btn-primary a-fade">Update Profile</button>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@ class Profile extends Component {
   displayBio() {
     const { bio } = this.state;
     return (
-      <div>
+      <div className="a-fade">
         <div className="row justify-content-center">
           <div className="col-6 text-center">
             <h6>About Me  <span onClick={this.startEditing} className="oi oi-cog text-primary" title="cog" aria-hidden="true"></span> </h6>
@@ -68,14 +68,14 @@ class Profile extends Component {
     return (
       <div style={{height: '100vh'}} className="d-flex flex-column justify-content-center">
         <div className="row justify-content-center">
-          <div className="col-6 text-center">
+          <div className="col-6 text-center a-fade mb-3">
             <img src={photoURL}
-            className="rounded-circle my-3"
+            className="rounded-circle"
             alt="Profile"/>
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-6 text-center my-3">
+          <div className="col-6 text-center mb-3 a-fade">
             <h4>{ displayName }</h4>
           </div>
         </div>

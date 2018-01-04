@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import logoSmall from './assets/talk_small.svg';
 
 class Nav extends Component {
+
   render() {
     const {photoURL} = this.props.currentUser;
     return (
-      <nav style={{width: '100vw'}} className="navbar fixed-top pt-0">
+      <nav style={{width: '100vw'}} className="navbar fixed-top pt-0 a-fade-fall">
         <Link className="navbar-brand" to="/chat" >
           <img style={{width: "3rem"}} src={logoSmall} alt="Talk logo"/>
         </Link>
@@ -20,6 +21,7 @@ class Nav extends Component {
       </nav>
     )
   }
+  
 }
 
 const mapStateToProps = state => {

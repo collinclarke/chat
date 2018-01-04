@@ -22,7 +22,7 @@ class Chatroom extends Component {
       return <Message text={message} key={id} bot={bot}/>
     })
     if (loading) {
-      msgs.push(<Message text={<img style={{width: "60px", height: "18px", objectFit: "cover"}} src={loadingSVG} />} key="typing" bot={true}/>)
+      msgs.push(<Message text={<img style={{width: "60px", height: "18px", objectFit: "cover", paddingBottom: "2px"}} src={loadingSVG} />} key="typing" bot={true}/>)
     }
     return msgs;
   }
@@ -32,9 +32,8 @@ class Chatroom extends Component {
     return (
       <div className="row">
         <div style={{height: '100vh'}} className="position-fixed d-flex flex-column flex-nowrap justify-content-center w-100">
-          <div style={{height: '78vh', overflowY: 'auto'}} className="px-3 pt-2 mt-2 border border-left-0 border-right-0 border-bottom-0">
+          <div style={{height: '78vh', overflowY: 'auto'}} className="px-3 pt-2 mt-2 border border-left-0 border-right-0 border-bottom-0 a-fade">
             { this.messageHelper() }
-
           </div>
         </div>
         <div className="fixed-bottom m-3">

@@ -17,7 +17,7 @@ class Message extends Component {
 
     return (
       <div className={"m-0 row " + direction}>
-        <div className="col-auto mw-100 px-0">
+        <div className="col-auto mw-100 px-0 a-fade-fast">
           <div ref="message" className={"mx-2 my-1 px-2 d-flex justify-content-center " + bgColor} style={{borderRadius: '1rem', minWidth: '2rem'}}>
             <div ref="container"  className={"text-left m-1 mw-100 " + textColor} >
               <span ref="text" style={{wordWrap: 'break-word', whiteSpace: 'pre-wrap'}} className="mw-100">
@@ -29,6 +29,7 @@ class Message extends Component {
       </div>
     )
   }
+  
 }
 
 export default Message;
