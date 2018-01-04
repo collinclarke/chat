@@ -32,7 +32,7 @@ class Profile extends Component {
       <div className="a-fade">
         <div className="row justify-content-center">
           <div className="col-12 text-center mb-2">
-            <textarea rows="5" className="col-11 text-center" onChange={this.handleChange} value={this.state.bio} placeholder="Say something about yourself..."></textarea>
+            <textarea rows="5" className="col-11 col-lg-6 text-center" onChange={this.handleChange} value={this.state.bio} placeholder="Say something about yourself..."></textarea>
           </div>
         </div>
         <div className="row justify-content-center">

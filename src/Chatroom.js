@@ -32,7 +32,7 @@ class Chatroom extends Component {
     return (
       <div className="row">
         <div style={{height: '100vh'}} className="position-fixed d-flex flex-column flex-nowrap justify-content-center w-100">
-          <div style={{height: '78vh', overflowY: 'auto'}} className="px-3 pt-2 mt-2 border border-left-0 border-right-0 border-bottom-0 a-fade">
+          <div style={{position: 'fixed', top: '70px', bottom: '70px', overflowY: 'auto'}} className="w-100 px-3 pt-2 mt-2 border border-left-0 border-right-0 border-bottom-0 a-fade">
             { this.messageHelper() }
           </div>
         </div>
@@ -40,7 +40,7 @@ class Chatroom extends Component {
           <form className="row" onSubmit={this.submitMessage}>
             <div className="col-12 w-100">
               <div className="input-group">
-                <input onChange={this.handleChange} type="text" ref="chatbar" className="form-control border-right-0" placeholder="Type here..." aria-label="Type here..." />
+                <input onChange={this.handleChange} type="text" ref="chatbar" className="form-control border-0" placeholder="Type here..." aria-label="Type here..." />
                 <span className="input-group-btn">
                   <button className={"btn btn-light w-100 " + textColor}><span className="oi oi-share" title="share" aria-hidden="true"></span></button>
                 </span>
