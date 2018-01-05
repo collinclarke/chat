@@ -50,7 +50,7 @@ class Profile extends Component {
       <div className="a-fade">
         <div className="row justify-content-center">
           <div className="col-6 text-center">
-            <h6>About Me  <span onClick={this.startEditing} className="oi oi-cog text-primary" title="cog" aria-hidden="true"></span> </h6>
+            <h6>About Me  <span onClick={this.startEditing} onTouchStart={this.startEditing} className="oi oi-cog text-primary" title="cog" aria-hidden="true"></span> </h6>
           </div>
         </div>
         <div className="row justify-content-center">

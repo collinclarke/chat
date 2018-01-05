@@ -16,7 +16,7 @@ class FacebookButton extends Component {
       btnStyle = "btn btn-primary";
     }
     return (
-      <button type="button" onClick={this.sessionAction} className={btnStyle}>{msg}</button>
+      <button type="button" onClick={this.sessionAction} onTouchStart={this.sessionAction} className={btnStyle}>{msg}</button>
     )
   }
 
